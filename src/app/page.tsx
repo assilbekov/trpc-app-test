@@ -50,11 +50,15 @@ export default async function Home() {
 
         <CrudShowcase />
 
-        {posts.map(({post, author}) => (
+        {posts.map(({ post, author }) => (
           <div key={post.id} className="flex flex-col items-center gap-2">
-            <Image src={author?.imageUrl || ""} alt="Image" width={56} height={56} />
+            {author && (
+              <>
+                <Image src={author?.imageUrl || ""} alt="Image" width={56} height={56} />
+                <p>Author: {author?.username}</p>
+              </>
+            )}
             <p>{post.content}</p>
-            <p>Author: {author?.username}</p>
           </div>
         ))}
       </div>
